@@ -550,13 +550,24 @@
   ];
   /*PATCHES_END*/
 
-  var byId={};patches.forEach(function(p){byId[p.id]=p});
+  /* ID에 공백·특수문자가 있으면 주소/카운터/요소ID가 깨지므로 안전한 형태로 변환 */
+  function slug(s){
+    return String(s||'').trim().toLowerCase()
+      .replace(/[^\w\-]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'') || 'patch';
+  }
+  var byId={};patches.forEach(function(p){p._s=slug(p.id);byId[p.id]=p;byId[p._s]=p;});
 
   function show(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});var el=document.getElementById(id);if(el)el.classList.add('active')}
   function navActive(id){document.querySelectorAll('nav.menu a').forEach(function(a){a.classList.toggle('active',a.dataset.nav===id)})}
   function go(route,e){
     if(e)e.preventDefault();route=route||'patches';
-    if(route.indexOf('patch/')===0){var id=route.slice(6);if(byId[id]){renderDetail(id);show('detail');navActive('patches')}else{route='patches';show('patches');navActive('patches')}}
+    if(route.indexOf('patch/')===0){
+      var raw=route.slice(6);
+      try{raw=decodeURIComponent(raw)}catch(err){}
+      var p=byId[raw]||byId[slug(raw)];
+      if(p){renderDetail(p.id);show('detail');navActive('patches');route='patch/'+p._s;}
+      else{route='patches';show('patches');navActive('patches');}
+    }
     else{if(!document.getElementById(route))route='patches';show(route);navActive(route)}
     if(location.hash!=='#'+route)history.replaceState(null,'','#'+route);
     window.scrollTo(0,0);
@@ -585,8 +596,8 @@
     var stTxt=p.status==='rel'?'<span class="pcard-status ok">● 배포중</span>':'<span class="pcard-status wip">◐ 작업중 '+p.prog+'%</span>';
     var pcls=p.status==='rel'?'ok':'wip';
     var k=kindOf(p);
-    var dlc=(p.status==='rel'&&hasDl(p))?'<span class="pcard-dl">⤓ <b id="dlc_card_'+p.id+'">–</b></span>':'';
-    return '<a class="pcard" href="#patch/'+p.id+'" onclick="go(\'patch/'+p.id+'\',event)">'
+    var dlc=(p.status==='rel'&&hasDl(p))?'<span class="pcard-dl">⤓ <b id="dlc_card_'+p._s+'">–</b></span>':'';
+    return '<a class="pcard" href="#patch/'+p._s+'" onclick="go(\'patch/'+p._s+'\',event)">'
       +coverInner(p,'pcard-cover')
       +'<div class="pcard-info"><div class="pcard-title">'+p.title+'</div>'
       +'<div class="pcard-team">번역 · '+p.team+'</div>'
@@ -609,7 +620,7 @@
     });
     var el=document.getElementById('plist');
     el.innerHTML=list.length?list.map(listCard).join(''):'<div class="no-result">조건에 맞는 패치가 없습니다.</div>';
-    list.forEach(function(p){if(p.status==='rel'&&hasDl(p)){cGet('dl_'+p.id).then(function(v){var b=document.getElementById('dlc_card_'+p.id);if(b)b.textContent=(v==null?'–':v)})}});
+    list.forEach(function(p){if(p.status==='rel'&&hasDl(p)){cGet('dl_'+p._s).then(function(v){var b=document.getElementById('dlc_card_'+p._s);if(b)b.textContent=(v==null?'–':v)})}});
   }
   function val(id){var e=document.getElementById(id);return e?e.value:''}
   function initFilters(){
@@ -637,7 +648,7 @@
   function dlButtons(p){
     if(!p.downloads||!p.downloads.length)return '<p class="muted" style="font-size:14px">아직 배포 주소가 등록되지 않았습니다. 작업이 끝나면 여기에 다운로드 링크가 올라옵니다.</p>';
     return '<div class="downloads">'+p.downloads.map(function(d){
-      if(d.url)return '<a class="dlbtn" href="'+d.url+'" target="_blank" rel="noopener" onclick="dl(\''+p.id+'\')">⤓ '+d.label+'</a>';
+      if(d.url)return '<a class="dlbtn" href="'+d.url+'" target="_blank" rel="noopener" onclick="dl(\''+p._s+'\')">⤓ '+d.label+'</a>';
       return '<button class="dlbtn off" onclick="toast(\''+d.label+' 링크를 등록하세요.\')">⤓ '+d.label+' (준비 중)</button>';
     }).join('')+'</div>';
   }
@@ -696,10 +707,10 @@
       +'<div class="tabpanel" data-panel="clog"><div class="infocard"><h3>업데이트 내역</h3>'+changelogHTML(p)+'</div></div>'
       +'<div class="tabpanel" data-panel="gallery"><div class="infocard"><h3>스크린샷</h3><div class="gallery">'+galleryHTML(p)+'</div></div></div>'
       +'<div class="tabpanel" data-panel="dl"><div class="infocard"><h3>패치를 다운로드하세요!</h3>'
-        +'<p class="dl-note">패치는 정품 원본에 적용해 주세요.'+(p.status==='rel'?' 누적 다운로드 <b id="dlc_detail_'+p.id+'">–</b>회.':'')+'</p>'+dlButtons(p)+'</div></div>'
+        +'<p class="dl-note">패치는 정품 원본에 적용해 주세요.'+(p.status==='rel'?' 누적 다운로드 <b id="dlc_detail_'+p._s+'">–</b>회.':'')+'</p>'+dlButtons(p)+'</div></div>'
       +'<div class="tabpanel" data-panel="cmt"><div class="infocard"><h3>댓글</h3>'+commentsHTML(p.id)+'</div></div>';
     document.getElementById('detail').innerHTML=html;
-    if(p.status==='rel')cGet('dl_'+p.id).then(function(v){var el=document.getElementById('dlc_detail_'+p.id);if(el)el.textContent=(v==null?'–':v)});
+    if(p.status==='rel')cGet('dl_'+p._s).then(function(v){var el=document.getElementById('dlc_detail_'+p._s);if(el)el.textContent=(v==null?'–':v)});
     loadComments(p.id);
   }
   function tab(btn,name){
