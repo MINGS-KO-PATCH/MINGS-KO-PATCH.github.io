@@ -824,8 +824,32 @@
       return '<button class="'+m.cls+'" title="'+(s.label||m.name)+'" onclick="share(\''+s.type+'\')">'+m.icon+'</button>';
     }).join('');
   }
+  /* 공유 주소/제목/이미지 —— 카톡·네이버 미리보기는 '#' 뒤를 못 읽으므로
+     상세 화면에서는 그 패치의 전용 페이지(patch/xxx.html)를 공유해야
+     그 게임의 커버와 제목이 정확히 표시됩니다. */
+  function curPatchFromHash(){
+    var m=(location.hash||'').match(/^#patch\/(.+)$/);
+    if(!m)return null;
+    return byId[m[1]]||byId[slug(m[1])]||null;
+  }
+  function shareURL(){
+    var p=curPatchFromHash();
+    return p?(location.origin+'/patch/'+p._s+'.html'):(location.origin+'/');
+  }
+  function shareTitle(){
+    var p=curPatchFromHash();
+    return p?(p.title+' '+kindOf(p)+' ('+p.plat+') - MINGS'):document.title;
+  }
+  function shareImage(){
+    var p=curPatchFromHash();
+    if(p){
+      var a=p.art||((p.gallery&&p.gallery.length)?p.gallery[0]:'');
+      if(a)return /^https?:/i.test(a)?a:(location.origin+'/'+imgURL(a));
+    }
+    return location.origin+'/images/og.png';
+  }
   function share(type){
-    var url=location.href, t=document.title;
+    var url=shareURL(), t=shareTitle();
     var u=encodeURIComponent(url), x=encodeURIComponent(t);
     if(type==='copy'){if(navigator.clipboard)navigator.clipboard.writeText(url);toast('링크를 복사했습니다.');return;}
     if(type==='naver'){window.open('https://share.naver.com/web/shareView?url='+u+'&title='+x,'_blank','noopener');return;}
@@ -841,7 +865,7 @@
         if(!Kakao.isInitialized())Kakao.init(KAKAO_KEY);
         Kakao.Share.sendDefault({objectType:'feed',
           content:{title:title,description:'MINGS 레트로 게임 한글패치',
-            imageUrl:location.origin+'/images/og.png',
+            imageUrl:shareImage(),
             link:{mobileWebUrl:url,webUrl:url}}});
         return;
       }catch(e){}
