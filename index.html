@@ -223,6 +223,20 @@
   .cmt-admin{margin-top:18px;padding-top:14px;border-top:1px solid var(--line2)}
   .cmt-admin-btn{font-size:12px;background:none;border:1px solid var(--line2);color:var(--text-dim);border-radius:6px;padding:5px 12px}
   .cmt-admin-btn:hover{color:var(--accent);border-color:var(--accent)}
+  /* 대댓글 */
+  .cmt-replies{margin-top:10px;margin-left:28px;display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--line2);padding-left:14px}
+  .cmt-reply{font-size:13.5px}
+  .cmt-reply .cmt-head{margin-bottom:2px}
+  .cmt-reply .cmt-body{font-size:13px}
+  .reply-btn{font-size:11px;background:none;border:none;color:var(--text-dim);cursor:pointer;padding:0;margin-left:4px}
+  .reply-btn:hover{color:var(--accent)}
+  .reply-form{margin-top:10px;margin-left:28px;border-left:2px solid var(--accent);padding-left:14px;display:flex;flex-direction:column;gap:6px}
+  .reply-form .cmt-idrow{display:flex;gap:6px;flex-wrap:wrap}
+  .reply-form textarea{background:var(--bg2);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:8px 10px;font-size:13px;font-family:inherit;min-height:56px;resize:vertical;width:100%}
+  .reply-form input{background:var(--bg2);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:8px 10px;font-size:13px;font-family:inherit;max-width:160px}
+  .reply-actions{display:flex;gap:8px}
+  .reply-submit{background:var(--accent);color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer}
+  .reply-cancel{background:none;border:1px solid var(--line2);color:var(--text-dim);border-radius:7px;padding:7px 12px;font-size:13px;cursor:pointer}
   .dlbtn{font-family:var(--font-pixel);font-size:14px;letter-spacing:1px;padding:16px 26px;border-radius:12px;background:var(--accent);color:#fff;border:none;display:inline-flex;align-items:center;gap:8px;transition:.15s}
   .dlbtn:hover{background:var(--accent-deep);transform:translateY(-2px)}
   .dlbtn.off{background:var(--surface-2);color:var(--text-dim);cursor:default}
@@ -319,7 +333,7 @@
     <!--SEOLINKS_START-->
     <nav class="seo-links" aria-label="패치 목록(검색용)">
       <h2>MINGS 한글패치 목록</h2>
-      <ul><li><a href="patch/grand-knight-history.html">그란 나이츠 히스토리 한글패치 (PSP)</a></li><li><a href="patch/adventure-bar-wonderland.html">어드벤처 바 스토리 포터블 한글패치 (PSP)</a></li><li><a href="patch/kentoushi-gladiator-begins.html">검투사 글래디에이터 비긴즈 한글패치 (PSP)</a></li><li><a href="patch/exit.html">비상구 한글패치 (PSP)</a></li><li><a href="patch/exit2.html">비상구2 한글패치 (PSP)</a></li><li><a href="patch/bomberman-portable.html">범버맨 포터블 한글패치 (PSP)</a></li><li><a href="patch/7th-dragon-2020.html">세븐즈 드래곤 2020 한글패치 (PSP)</a></li><li><a href="patch/7th-dragon-2020-2.html">세븐즈 드래곤 2020-2 한글패치 (PSP)</a></li><li><a href="patch/soreyuke-burunyan-man-portable.html">가자! 부르냥맨 포터블 한글패치 (PSP)</a></li><li><a href="patch/criminal-girls.html">크리미널 걸 한글패치 (PSP)</a></li><li><a href="patch/ultimate-ghosts-n-goblins.html">극마계촌 한글패치 (PSP)</a></li><li><a href="patch/boku-no-natsuyasumi-portable.html">나의 여름 방학 한글패치 (PSP)</a></li></ul>
+      <ul><li><a href="patch/grand-knight-history.html">그란 나이츠 히스토리 한글패치 (PSP)</a></li><li><a href="patch/adventure-bar-wonderland.html">어드벤처 바 스토리 포터블 한글패치 (PSP)</a></li><li><a href="patch/kentoushi-gladiator-begins.html">검투사 글래디에이터 비긴즈 한글패치 (PSP)</a></li><li><a href="patch/exit.html">비상구 한글패치 (PSP)</a></li><li><a href="patch/exit2.html">비상구2 한글패치 (PSP)</a></li><li><a href="patch/bomberman-portable.html">범버맨 포터블 한글패치 (PSP)</a></li><li><a href="patch/7th-dragon-2020.html">세븐즈 드래곤 2020 한글패치 (PSP)</a></li><li><a href="patch/7th-dragon-2020-2.html">세븐즈 드래곤 2020-2 한글패치 (PSP)</a></li><li><a href="patch/soreyuke-burunyan-man-portable.html">가자! 부르냥맨 포터블 한글패치 (PSP)</a></li><li><a href="patch/criminal-girls.html">크리미널 걸즈 한글패치 (PSP)</a></li><li><a href="patch/ultimate-ghosts-n-goblins.html">극마계촌 한글패치 (PSP)</a></li><li><a href="patch/boku-no-natsuyasumi-portable.html">나의 여름 방학 한글패치 (PSP)</a></li></ul>
     </nav>
     <!--SEOLINKS_END-->
   </section>
@@ -1268,7 +1282,7 @@
     },
     {
       "id": "Criminal Girls",
-      "title": "크리미널 걸",
+      "title": "크리미널 걸즈",
       "team": "MINGS",
       "plat": "PSP",
       "genre": "JRPG",
@@ -1307,7 +1321,7 @@
         },
         {
           "role": "검수",
-          "name": "입지사지,새턴"
+          "name": "입지사지,새턴인"
         }
       ],
       "where": [
@@ -1524,7 +1538,7 @@
     var p=byId[id];
     var storyHTML=(p.story&&p.story.length)?p.story.map(function(s){return '<p>'+s+'</p>'}).join(''):'<p>'+(p.desc||'')+'</p>';
     var platCls=p.status==='rel'?'ok':'wip', platWord=p.status==='rel'?'완료':'작업중';
-    var whereHTML=(p.where&&p.where.length)?'<div class="infocard"><h3>비밀번호</h3><ul class="linklist">'+p.where.map(function(w){return '<li>'+w+'</li>'}).join('')+'</ul></div>':'';
+    var whereHTML=(p.where&&p.where.length)?'<div class="infocard"><h3>정보</h3><ul class="linklist">'+p.where.map(function(w){return '<li>'+w+'</li>'}).join('')+'</ul></div>':'';
     var featHTML=(p.features&&p.features.length)?'<div class="infocard"><h3>작업 후기</h3><div class="worknote">'+p.features.map(function(x){return '<p>'+x+'</p>'}).join('')+'</div></div>':'';
     var steps=p.steps||GENERIC_STEPS;
 
@@ -1697,7 +1711,6 @@
       return true;
     }catch(e){return false;}
   }
-  /* 비밀번호 해시 (평문 저장 금지) */
   function hashPw(pw){
     var s=pw+'::mings-comment-salt';
     if(window.crypto&&crypto.subtle){
@@ -1710,6 +1723,7 @@
   }
   function isOwnerUser(){return _fbUser&&OWNER_EMAIL&&_fbUser.email===OWNER_EMAIL}
 
+  /* ── 댓글 HTML 뼈대 ── */
   function commentsHTML(id){
     return '<div id="cmtBox">'
       +'<div class="cmt-form">'
@@ -1722,6 +1736,7 @@
       +'<div id="cmtList" class="cmt-list"></div>'
       +'<div class="cmt-admin" id="cmtAdmin"></div></div>';
   }
+
   function renderIdRow(){
     var el=document.getElementById('cmtIdRow');if(!el)return;
     if(_fbUser){
@@ -1731,31 +1746,106 @@
         +'<input id="cmtPw" type="password" maxlength="20" placeholder="비밀번호 (삭제용)">';
     }
   }
+
+  /* ── 댓글 + 대댓글 불러오기 ── */
   function loadComments(id){
     _curPatch=id;
     var list=document.getElementById('cmtList');if(!list)return;
     renderIdRow();
     if(!fbInit()){list.innerHTML='<p class="muted" style="font-size:14px">댓글 기능이 아직 설정되지 않았습니다.</p>';renderAdminBar();return;}
     list.innerHTML='<p class="muted" style="font-size:13px">불러오는 중…</p>';
-    firebase.firestore().collection('comments').where('patch','==',id).get().then(function(snap){
+    var db=firebase.firestore();
+    db.collection('comments').where('patch','==',id).get().then(function(snap){
       var arr=[];snap.forEach(function(d){var c=d.data();c._id=d.id;arr.push(c)});
       arr.sort(function(a,b){return (a.ts&&b.ts)?(a.ts.seconds-b.ts.seconds):0});
       if(!arr.length){list.innerHTML='<p class="muted" style="font-size:14px">첫 댓글을 남겨보세요.</p>';renderAdminBar();return;}
-      var owner=isOwnerUser();
-      list.innerHTML=arr.map(function(c){
-        var t=c.ts?new Date(c.ts.seconds*1000).toLocaleString('ko-KR'):'';
-        var mine=owner || (_fbUser && c.uid && c.uid===_fbUser.uid);
-        var canDel = mine || (!c.uid);      /* 비회원 글은 비번 확인으로 삭제 */
-        var del=canDel?'<button class="cmt-del" onclick="deleteComment(\''+c._id+'\')">삭제</button>':'';
-        var badge=c.uid?'<span class="cmt-badge">로그인</span>':'';
-        return '<div class="cmt-item"><div class="cmt-head"><b>'+esc(c.nick||'익명')+'</b>'+badge
-          +'<span class="cmt-t">'+t+'</span>'+del+'</div>'
-          +'<div class="cmt-body">'+esc(c.text)+'</div></div>';
-      }).join('');
-      renderAdminBar();
+
+      /* 대댓글도 함께 조회 */
+      var repFetches=arr.map(function(c){
+        return db.collection('comments').doc(c._id).collection('replies')
+          .orderBy('ts','asc').get()
+          .then(function(rs){
+            c._replies=[];
+            rs.forEach(function(r){var d=r.data();d._id=r.id;d._pid=c._id;c._replies.push(d)});
+          }).catch(function(){c._replies=[];});
+      });
+      return Promise.all(repFetches).then(function(){
+        list.innerHTML=arr.map(function(c){return renderComment(c,false)}).join('');
+        renderAdminBar();
+      });
     }).catch(function(e){list.innerHTML='<p class="muted" style="font-size:14px">댓글을 불러오지 못했습니다. (설정/규칙 확인)</p>'});
   }
 
+  /* ── 댓글 하나 렌더링 ── */
+  function renderComment(c,isReply){
+    var t=c.ts?new Date(c.ts.seconds*1000).toLocaleString('ko-KR'):'';
+    var owner=isOwnerUser();
+    var mine=owner||(_fbUser&&c.uid&&c.uid===_fbUser.uid);
+    var canDel=mine||(!c.uid);
+    var pid=isReply?(c._pid+'/replies/'+c._id):c._id;
+    var del=canDel?'<button class="cmt-del" onclick="deleteComment(\''+c._id+'\',\''+(isReply?c._pid:'')+'\')" >삭제</button>':'';
+    var badge=c.uid?'<span class="cmt-badge">로그인</span>':'';
+    var replyBtn=!isReply?'<button class="reply-btn" onclick="toggleReplyForm(\''+c._id+'\')">↩ 답글</button>':'';
+    var repliesHTML='';
+    if(!isReply&&c._replies&&c._replies.length){
+      repliesHTML='<div class="cmt-replies">'+c._replies.map(function(r){return renderComment(r,true)}).join('')+'</div>';
+    }
+    var formHTML=!isReply?'<div id="rf_'+c._id+'" style="display:none"></div>':'';
+    return '<div class="cmt-item'+(isReply?' cmt-reply':'')+'" id="ci_'+c._id+'">'
+      +'<div class="cmt-head"><b>'+esc(c.nick||'익명')+'</b>'+badge
+      +'<span class="cmt-t">'+t+'</span>'+replyBtn+del+'</div>'
+      +'<div class="cmt-body">'+esc(c.text)+'</div>'
+      +repliesHTML+formHTML+'</div>';
+  }
+
+  /* ── 답글 폼 토글 ── */
+  function toggleReplyForm(pid){
+    var el=document.getElementById('rf_'+pid);if(!el)return;
+    if(el.style.display!=='none'){el.style.display='none';el.innerHTML='';return;}
+    var idRow=_fbUser
+      ?'<span class="cmt-asme">'+esc(_fbUser.displayName||_fbUser.email)+'</span>'
+      :'<input id="rnick_'+pid+'" maxlength="20" placeholder="닉네임">'
+       +'<input id="rpw_'+pid+'" type="password" maxlength="20" placeholder="비밀번호 (삭제용)">';
+    el.innerHTML='<div class="reply-form">'
+      +'<div class="cmt-idrow">'+idRow+'</div>'
+      +'<textarea id="rtxt_'+pid+'" maxlength="500" placeholder="답글을 입력하세요"></textarea>'
+      +'<div class="reply-actions">'
+        +'<button class="reply-submit" onclick="submitReply(\''+pid+'\')">등록</button>'
+        +'<button class="reply-cancel" onclick="toggleReplyForm(\''+pid+'\')">취소</button>'
+      +'</div></div>';
+    el.style.display='block';
+    document.getElementById('rtxt_'+pid).focus();
+  }
+
+  /* ── 대댓글 등록 ── */
+  function submitReply(pid){
+    if(!fbInit()){toast('댓글 기능이 아직 설정되지 않았습니다.');return;}
+    var text=(document.getElementById('rtxt_'+pid).value||'').trim();
+    if(!text){toast('내용을 입력하세요.');return;}
+    var nick,pw='';
+    if(_fbUser){
+      nick=_fbUser.displayName||_fbUser.email;
+    }else{
+      nick=(document.getElementById('rnick_'+pid).value||'').trim();
+      pw=(document.getElementById('rpw_'+pid).value||'').trim();
+      if(!nick){toast('닉네임을 입력하세요.');return;}
+      if(pw.length<4){toast('비밀번호를 4자 이상 입력하세요.');return;}
+    }
+    var btn=document.querySelector('#rf_'+pid+' .reply-submit');
+    if(btn){btn.disabled=true;btn.textContent='등록 중…';}
+    function done(){if(btn){btn.disabled=false;btn.textContent='등록';}}
+
+    (_fbUser?Promise.resolve(''):hashPw(pw)).then(function(ph){
+      var doc={nick:nick.slice(0,20),text:text.slice(0,500),
+               ts:firebase.firestore.FieldValue.serverTimestamp()};
+      if(_fbUser){doc.uid=_fbUser.uid}else{doc.pw=ph}
+      return firebase.firestore().collection('comments').doc(pid).collection('replies').add(doc);
+    }).then(function(){
+      toast('답글을 등록했습니다.');done();loadComments(_curPatch);
+    }).catch(function(){toast('등록 실패 — 설정/규칙을 확인하세요.');done();});
+  }
+
+  /* ── 댓글/대댓글 등록 ── */
   function submitComment(id){
     if(!fbInit()){toast('댓글 기능이 아직 설정되지 않았습니다.');return;}
     var text=(document.getElementById('cmtText').value||'').trim();
@@ -1771,7 +1861,6 @@
     }
     var btn=document.querySelector('.cmt-submit');if(btn){btn.disabled=true;btn.textContent='등록 중…'}
     function done(){if(btn){btn.disabled=false;btn.textContent='등록'}}
-
     (_fbUser?Promise.resolve(''):hashPw(pw)).then(function(ph){
       var doc={patch:id,nick:nick.slice(0,20),text:text.slice(0,500),
                ts:firebase.firestore.FieldValue.serverTimestamp()};
@@ -1783,29 +1872,35 @@
       toast('댓글을 등록했습니다.');done();loadComments(id);
     }).catch(function(e){toast('등록 실패 — 설정/규칙을 확인하세요.');done()});
   }
-  function deleteComment(cid){
+
+  /* ── 삭제 (댓글 or 대댓글) ── */
+  function deleteComment(cid,pid){
     var db=firebase.firestore();
-    db.collection('comments').doc(cid).get().then(function(d){
+    var ref=pid
+      ?db.collection('comments').doc(pid).collection('replies').doc(cid)
+      :db.collection('comments').doc(cid);
+    ref.get().then(function(d){
       if(!d.exists)return;
       var c=d.data();
       if(isOwnerUser()||(_fbUser&&c.uid&&c.uid===_fbUser.uid)){
-        if(!confirm('이 댓글을 삭제할까요?'))return;
-        return doDelete(cid);
+        if(!confirm('삭제할까요?'))return;
+        return doDeleteRef(ref,pid);
       }
-      if(c.uid){toast('작성자 본인만 삭제할 수 있습니다.');return}
+      if(c.uid){toast('작성자 본인만 삭제할 수 있습니다.');return;}
       var pw=prompt('작성 시 입력한 비밀번호를 입력하세요.');
       if(pw==null)return;
       return hashPw(pw.trim()).then(function(ph){
-        if(ph!==c.pw){toast('비밀번호가 일치하지 않습니다.');return}
-        return doDelete(cid);
+        if(ph!==c.pw){toast('비밀번호가 일치하지 않습니다.');return;}
+        return doDeleteRef(ref,pid);
       });
-    }).catch(function(){toast('삭제 처리 중 오류가 발생했습니다.')});
+    }).catch(function(){toast('삭제 처리 중 오류가 발생했습니다.');});
   }
-  function doDelete(cid){
-    return firebase.firestore().collection('comments').doc(cid).delete()
-      .then(function(){toast('삭제했습니다.');loadComments(_curPatch)})
-      .catch(function(){toast('삭제 실패 — 규칙을 확인하세요.')});
+  function doDeleteRef(ref,pid){
+    return ref.delete()
+      .then(function(){toast('삭제했습니다.');loadComments(_curPatch);})
+      .catch(function(){toast('삭제 실패 — 규칙을 확인하세요.');});
   }
+
   function renderAdminBar(){
     var el=document.getElementById('cmtAdmin');if(!el)return;
     if(!_fbReady){el.innerHTML='';return;}
@@ -1824,7 +1919,6 @@
     provider.setCustomParameters({prompt:'select_account'});
     firebase.auth().signInWithPopup(provider).catch(function(e){
       var c=e&&e.code||'';
-      /* 팝업이 막히거나 닫히면 리디렉션 방식으로 재시도 */
       if(c==='auth/popup-blocked'||c==='auth/cancelled-popup-request'||c==='auth/operation-not-supported-in-this-environment'){
         firebase.auth().signInWithRedirect(provider).catch(function(e2){loginErr(e2)});
         return;
