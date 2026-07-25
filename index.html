@@ -104,11 +104,6 @@
   .pcard-status.ok{color:var(--green)}
   .pcard-status.wip{color:var(--accent)}
   .no-result{grid-column:1/-1;text-align:center;color:var(--text-dim);padding:50px;font-size:14px}
-  .seo-links{margin-top:40px;padding-top:20px;border-top:1px solid var(--line2);opacity:.4}
-  .seo-links h2{font-size:12px;color:var(--text-dim);font-weight:500;margin-bottom:8px}
-  .seo-links ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 16px}
-  .seo-links a{font-size:12px;color:var(--text-dim)}
-  .seo-links a:hover{color:var(--accent)}
 
   /* ---------- visitor stats ---------- */
   .section-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 20px;padding-bottom:12px;border-bottom:1px solid var(--line2)}
@@ -225,6 +220,33 @@
   .cmt-admin-btn:hover{color:var(--accent);border-color:var(--accent)}
   /* 대댓글 */
   .cmt-replies{margin-top:10px;margin-left:28px;display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--line2);padding-left:14px}
+  .cmt-reply .cmt-head{margin-bottom:2px}
+  .cmt-reply .cmt-body{font-size:13px}
+  .reply-btn{font-size:11px;background:none;border:none;color:var(--text-dim);cursor:pointer;padding:0;margin-left:4px}
+  .reply-btn:hover{color:var(--accent)}
+  .reply-form{margin-top:10px;margin-left:28px;border-left:2px solid var(--accent);padding-left:14px;display:flex;flex-direction:column;gap:6px}
+  .reply-form .cmt-idrow{display:flex;gap:6px;flex-wrap:wrap}
+  .reply-form textarea{background:var(--bg2);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:8px 10px;font-size:13px;font-family:inherit;min-height:56px;resize:vertical;width:100%}
+  .reply-form input{background:var(--bg2);border:1px solid var(--line2);border-radius:8px;color:var(--text);padding:8px 10px;font-size:13px;font-family:inherit;max-width:160px}
+  .reply-actions{display:flex;gap:8px}
+  .reply-submit{background:var(--accent);color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer}
+  .reply-cancel{background:none;border:1px solid var(--line2);color:var(--text-dim);border-radius:7px;padding:7px 12px;font-size:13px;cursor:pointer}
+  /* 게시판 */
+  .board-rules{font-size:14px;color:#c9d2e6;line-height:1.9;white-space:pre-line}
+  .donate-cards{display:flex;flex-wrap:wrap;gap:20px;max-width:680px}
+  .donate-card{flex:1;min-width:240px;background:var(--surface);border:1px solid var(--line2);
+    border-radius:18px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;gap:14px}
+  .donate-card .d-icon{font-size:38px;line-height:1}
+  .donate-card h3{font-size:18px;font-weight:700;margin:0}
+  .donate-card p{font-size:13px;color:var(--text-dim);text-align:center;margin:0}
+  .donate-btn{display:inline-block;padding:12px 28px;border-radius:10px;font-weight:700;
+    font-size:15px;text-decoration:none;color:#fff;transition:.15s}
+  .donate-btn:hover{transform:translateY(-2px);opacity:.9}
+  .donate-btn.toss{background:#0064ff}
+  .donate-btn.kakao{background:#fee500;color:#3c1e1e}
+  .donate-none{color:var(--text-dim);font-size:14px}
+  /* 대댓글 */
+  .cmt-replies{margin-top:10px;margin-left:28px;display:flex;flex-direction:column;gap:10px;border-left:2px solid var(--line2);padding-left:14px}
   .cmt-reply{font-size:13.5px}
   .cmt-reply .cmt-head{margin-bottom:2px}
   .cmt-reply .cmt-body{font-size:13px}
@@ -291,6 +313,10 @@
       <a href="#patches" data-nav="patches" onclick="go('patches',event)">패치 목록</a>
       <a href="#guide"   data-nav="guide"   onclick="go('guide',event)">설치 가이드</a>
       <a href="#about"   data-nav="about"   onclick="go('about',event)">소개</a>
+      <a href="#board"   data-nav="board"   onclick="go('board',event)">게시판</a>
+      <a href="#donate" data-nav="donate" id="donateNav"
+         onclick="go('donate',event)"
+         style="display:none">💛 후원</a>
       <a href="https://blog.naver.com/jjkgm" target="_blank" rel="noopener">블로그 ↗</a>
     </nav>
   </div>
@@ -330,12 +356,7 @@
       <input class="search" id="fSearch" type="text" placeholder="이름으로 검색..." oninput="applyFilters()">
     </div>
     <div class="plist" id="plist"></div>
-    <!--SEOLINKS_START-->
-    <nav class="seo-links" aria-label="패치 목록(검색용)">
-      <h2>MINGS 한글패치 목록</h2>
-      <ul><li><a href="patch/grand-knight-history.html">그란 나이츠 히스토리 한글패치 (PSP)</a></li><li><a href="patch/adventure-bar-wonderland.html">어드벤처 바 스토리 포터블 한글패치 (PSP)</a></li><li><a href="patch/kentoushi-gladiator-begins.html">검투사 글래디에이터 비긴즈 한글패치 (PSP)</a></li><li><a href="patch/exit.html">비상구 한글패치 (PSP)</a></li><li><a href="patch/exit2.html">비상구2 한글패치 (PSP)</a></li><li><a href="patch/bomberman-portable.html">범버맨 포터블 한글패치 (PSP)</a></li><li><a href="patch/7th-dragon-2020.html">세븐즈 드래곤 2020 한글패치 (PSP)</a></li><li><a href="patch/7th-dragon-2020-2.html">세븐즈 드래곤 2020-2 한글패치 (PSP)</a></li><li><a href="patch/soreyuke-burunyan-man-portable.html">가자! 부르냥맨 포터블 한글패치 (PSP)</a></li><li><a href="patch/ultimate-ghosts-n-goblins.html">극마계촌 한글패치 (PSP)</a></li><li><a href="patch/boku-no-natsuyasumi-portable.html">나의 여름 방학 포터 한글패치 (PSP)</a></li><li><a href="patch/criminal-girls.html">크리미널 걸즈 한글패치 (PSP)</a></li></ul>
-    </nav>
-    <!--SEOLINKS_END-->
+    <!--SEOLINKS_START--><!--SEOLINKS_END-->
   </section>
 
   <!-- ===== DETAIL ===== -->
@@ -381,6 +402,26 @@
         <div class="crow"><span class="k">디스코드</span><span class="muted">여기에 입력</span></div>
       </div>
     </div>
+  </section>
+
+
+  <!-- ===== DONATE ===== -->
+  <section class="page" id="donate">
+    <div class="eyebrow">SUPPORT</div>
+    <h1 class="title" style="margin-bottom:8px">후원하기</h1>
+    <p class="muted" style="margin-bottom:32px;font-size:15px">MINGS의 한글패치 제작을 응원해주세요.<br>모든 후원은 패치 개발에 쓰입니다. 감사합니다 🙏</p>
+    <div class="donate-cards" id="donateCards"></div>
+  </section>
+
+  <!-- ===== BOARD ===== -->
+  <section class="page" id="board">
+    <div class="eyebrow">FREE BOARD</div>
+    <h1 class="title" style="margin-bottom:24px">게시판</h1>
+    <div class="infocard" style="margin-bottom:24px">
+      <h3>📋 게시판 이용수칙</h3>
+      <div class="board-rules"><!--BOARD_RULES_START-->1. 아직 여기다 뭘 할지 정하지 않음<!--BOARD_RULES_END--></div>
+    </div>
+    <div id="boardComments"></div>
   </section>
 
 </main>
@@ -1455,7 +1496,7 @@
       if(p){renderDetail(p.id);show('detail');navActive('patches');route='patch/'+p._s;}
       else{route='patches';show('patches');navActive('patches');}
     }
-    else{if(!document.getElementById(route))route='patches';show(route);navActive(route)}
+    else{if(!document.getElementById(route))route='patches';show(route);navActive(route);if(route==='board')initBoard();if(route==='donate')initDonate();}
     if(location.hash!=='#'+route)history.replaceState(null,'','#'+route);
     window.scrollTo(0,0);
   }
@@ -1692,6 +1733,11 @@
 };
   var OWNER_EMAIL = "jjkgm86@gmail.com";
   /*FIREBASE_END*/
+  /*DONATE_START*/
+  var DONATE_ENABLED = false;
+  var DONATE_TOSS    = "";
+  var DONATE_KAKAO   = "";
+/*DONATE_END*/
   /*BG_START*/
   var SITE_BG = "";
   /*BG_END*/
@@ -1802,6 +1848,11 @@
     }).catch(function(e){list.innerHTML='<p class="muted" style="font-size:14px">댓글을 불러오지 못했습니다. (설정/규칙 확인)</p>'});
   }
 
+  function highlightMention(s){
+    return s.replace(/(^|\s)(@[^\s<]{1,20})/g,function(m,sp,at){
+      return sp+'<span style="color:var(--accent);font-weight:600">'+at+'</span>';
+    });
+  }
   /* ── 댓글 하나 렌더링 ── */
   function renderComment(c,isReply){
     var t=c.ts?new Date(c.ts.seconds*1000).toLocaleString('ko-KR'):'';
@@ -1820,7 +1871,7 @@
     return '<div class="cmt-item'+(isReply?' cmt-reply':'')+'" id="ci_'+c._id+'">'
       +'<div class="cmt-head"><b>'+esc(c.nick||'익명')+'</b>'+badge
       +'<span class="cmt-t">'+t+'</span>'+replyBtn+del+'</div>'
-      +'<div class="cmt-body">'+esc(c.text)+'</div>'
+      +'<div class="cmt-body">'+highlightMention(esc(c.text))+'</div>'
       +repliesHTML+formHTML+'</div>';
   }
 
@@ -1840,7 +1891,10 @@
         +'<button class="reply-cancel" onclick="toggleReplyForm(\''+pid+'\')">취소</button>'
       +'</div></div>';
     el.style.display='block';
-    document.getElementById('rtxt_'+pid).focus();
+    var rtxt=document.getElementById('rtxt_'+pid);
+    var parentNick=document.querySelector('#ci_'+pid+' > .cmt-head > b');
+    if(parentNick&&!rtxt.value){rtxt.value='@'+parentNick.textContent+' ';}
+    rtxt.focus();rtxt.setSelectionRange(rtxt.value.length,rtxt.value.length);
   }
 
   /* ── 대댓글 등록 ── */
@@ -1966,6 +2020,123 @@
     if(window.console)console.error('[MINGS 로그인 오류]',e);
   }
   function adminOut(){if(_fbReady)firebase.auth().signOut()}
+
+  /* ── 후원 ── */
+  function initDonate(){
+    var el=document.getElementById('donateCards');if(!el)return;
+    var cards=[];
+    if(DONATE_TOSS){
+      cards.push('<div class="donate-card">'
+        +'<span class="d-icon">💙</span>'
+        +'<h3>토스로 후원</h3>'
+        +'<p>토스 앱으로 간편하게<br>후원할 수 있습니다.</p>'
+        +'<a class="donate-btn toss" href="'+DONATE_TOSS+'" target="_blank" rel="noopener">토스로 후원하기</a>'
+        +'</div>');
+    }
+    if(DONATE_KAKAO){
+      cards.push('<div class="donate-card">'
+        +'<span class="d-icon">💛</span>'
+        +'<h3>카카오페이로 후원</h3>'
+        +'<p>카카오페이 링크로<br>간편하게 후원할 수 있습니다.</p>'
+        +'<a class="donate-btn kakao" href="'+DONATE_KAKAO+'" target="_blank" rel="noopener">카카오페이로 후원하기</a>'
+        +'</div>');
+    }
+    el.innerHTML=cards.length?cards.join(''):"<p class='donate-none'>후원 방법이 아직 준비 중입니다.</p>";
+  }
+  /* 후원 탭 표시 여부 + 초기화 */
+  (function(){
+    var nav=document.getElementById('donateNav');
+    if(DONATE_ENABLED&&nav)nav.style.display='';
+  })();
+
+  /* ── 게시판 ── */
+  function initBoard(){
+    if(!fbInit()){
+      document.getElementById('boardComments').innerHTML='<p class="muted">게시판 기능이 아직 설정되지 않았습니다.</p>';
+      return;
+    }
+    renderBoardForm();
+  }
+  function renderBoardForm(){
+    var el=document.getElementById('boardComments');if(!el)return;
+    var idRow=_fbUser
+      ?'<span class="cmt-asme">'+esc(_fbUser.displayName||_fbUser.email)+'</span>'
+      :'<input id="bNick" maxlength="20" placeholder="닉네임">'
+       +'<input id="bPw" type="password" maxlength="20" placeholder="비밀번호 (삭제용)">';
+    el.innerHTML='<div class="cmt-form" style="margin-bottom:22px">'
+      +'<div class="cmt-idrow" id="bIdRow">'+idRow+'</div>'
+      +'<textarea id="bText" maxlength="1000" placeholder="자유롭게 글을 남겨보세요 (최대 1000자)"></textarea>'
+      +'<div class="cmt-actions"><button class="cmt-submit" onclick="submitBoard()">글 올리기</button></div>'
+      +'</div>'
+      +'<div id="bList" class="cmt-list"></div>';
+    loadBoard();
+  }
+  function loadBoard(){
+    var el=document.getElementById('bList');if(!el||!fbInit())return;
+    el.innerHTML='<p class="muted" style="font-size:13px">불러오는 중…</p>';
+    firebase.firestore().collection('board').orderBy('ts','desc').limit(50).get()
+      .then(function(snap){
+        var arr=[];snap.forEach(function(d){var c=d.data();c._id=d.id;arr.push(c)});
+        if(!arr.length){el.innerHTML='<p class="muted" style="font-size:14px">아직 글이 없습니다. 첫 글을 남겨보세요!</p>';return;}
+        el.innerHTML=arr.map(function(c){
+          var t=c.ts?new Date(c.ts.seconds*1000).toLocaleString('ko-KR'):'';
+          var owner=isOwnerUser();
+          var mine=owner||(_fbUser&&c.uid&&c.uid===_fbUser.uid);
+          var canDel=mine||(!c.uid);
+          var del=canDel?'<button class="cmt-del" onclick="deleteBoard(\''+c._id+'\')" >삭제</button>':'';
+          var badge=c.uid?'<span class="cmt-badge">로그인</span>':'';
+          return '<div class="cmt-item">'
+            +'<div class="cmt-head"><b>'+esc(c.nick||'익명')+'</b>'+badge
+            +'<span class="cmt-t">'+t+'</span>'+del+'</div>'
+            +'<div class="cmt-body">'+esc(c.text)+'</div>'
+            +'</div>';
+        }).join('');
+      }).catch(function(){el.innerHTML='<p class="muted">불러오지 못했습니다.</p>';});
+  }
+  function submitBoard(){
+    if(!fbInit()){toast('기능이 설정되지 않았습니다.');return;}
+    var text=(document.getElementById('bText').value||'').trim();
+    if(!text){toast('내용을 입력하세요.');return;}
+    var nick,pw='';
+    if(_fbUser){
+      nick=_fbUser.displayName||_fbUser.email;
+    }else{
+      nick=(document.getElementById('bNick').value||'').trim();
+      pw=(document.getElementById('bPw').value||'').trim();
+      if(!nick){toast('닉네임을 입력하세요.');return;}
+      if(pw.length<4){toast('비밀번호를 4자 이상 입력하세요.');return;}
+    }
+    var btn=document.querySelector('#boardComments .cmt-submit');
+    if(btn){btn.disabled=true;btn.textContent='올리는 중…';}
+    function done(){if(btn){btn.disabled=false;btn.textContent='글 올리기';}}
+    (_fbUser?Promise.resolve(''):hashPw(pw)).then(function(ph){
+      var doc={nick:nick.slice(0,20),text:text.slice(0,1000),
+               ts:firebase.firestore.FieldValue.serverTimestamp()};
+      if(_fbUser){doc.uid=_fbUser.uid;}else{doc.pw=ph;}
+      return firebase.firestore().collection('board').add(doc);
+    }).then(function(){
+      document.getElementById('bText').value='';
+      toast('글을 올렸습니다.');done();loadBoard();
+    }).catch(function(){toast('등록 실패 — 설정/규칙을 확인하세요.');done();});
+  }
+  function deleteBoard(cid){
+    var db=firebase.firestore();
+    db.collection('board').doc(cid).get().then(function(d){
+      if(!d.exists)return;
+      var c=d.data();
+      if(isOwnerUser()||(_fbUser&&c.uid&&c.uid===_fbUser.uid)){
+        if(!confirm('삭제할까요?'))return;
+        return db.collection('board').doc(cid).delete().then(function(){toast('삭제했습니다.');loadBoard();});
+      }
+      if(c.uid){toast('작성자 본인만 삭제할 수 있습니다.');return;}
+      var pw=prompt('작성 시 입력한 비밀번호를 입력하세요.');
+      if(pw==null)return;
+      hashPw(pw.trim()).then(function(ph){
+        if(ph!==c.pw){toast('비밀번호가 일치하지 않습니다.');return;}
+        db.collection('board').doc(cid).delete().then(function(){toast('삭제했습니다.');loadBoard();});
+      });
+    });
+  }
   function ymd(d){return ''+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')}
   function mmdd(k){return k.slice(4,6)+'.'+k.slice(6,8)}
   function setNum(id,v){var el=document.getElementById(id);if(el)el.textContent=(v==null?'–':Number(v).toLocaleString())}
